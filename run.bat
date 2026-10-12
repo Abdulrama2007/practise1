@@ -6,4 +6,4 @@ if not errorlevel 1 (
 ) else (
     python -m src.main %*
 )
-if errorlevel 1 pause
+exit /b %errorlevel%

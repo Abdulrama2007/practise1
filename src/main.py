@@ -1,11 +1,26 @@
 """Точка входа графического эмулятора и режима проверки."""
 
 import sys
+from xml.etree.ElementTree import ParseError
 
 from src.config import describe_config, parse_args
 from src.shell import Shell
 from src.startup import execute_lines, run_script
 from src.vfs import VFS
+
+
+def run_gui(shell, startup, debug):
+    """Создать окно и превратить ошибку дисплея в понятное сообщение."""
+    import tkinter as tk
+
+    from src.gui import Terminal
+
+    try:
+        terminal = Terminal(shell)
+        terminal.write(debug)
+        terminal.run(startup)
+    except tk.TclError as error:
+        raise RuntimeError(f"не удалось открыть окно: {error}") from error
 
 
 def main(argv=None):
@@ -15,7 +30,7 @@ def main(argv=None):
     print(debug)
     try:
         shell = Shell(VFS(args.vfs))
-    except (OSError, ValueError, RecursionError) as error:
+    except (OSError, ValueError, ParseError, RecursionError) as error:
         print(f"Ошибка загрузки VFS: {error}", file=sys.stderr)
         return 1
     if args.headless:
@@ -23,11 +38,7 @@ def main(argv=None):
             return bool(run_script(shell, args.startup, print))
         return bool(execute_lines(shell, sys.stdin, print))
     try:
-        from src.gui import Terminal
-
-        terminal = Terminal(shell)
-        terminal.write(debug)
-        terminal.run(args.startup)
+        run_gui(shell, args.startup, debug)
     except (ImportError, RuntimeError) as error:
         print(f"Ошибка GUI: {error}", file=sys.stderr)
         return 1

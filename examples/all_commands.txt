@@ -1,0 +1,46 @@
+# Все команды и ошибки. Используйте рабочую копию deep.xml.
+pwd
+ls
+ls -a /
+ls /data.bin
+cd /home/student/documents/tasks
+pwd
+ls .
+du
+du -s /
+du /data.bin
+cd ..
+cd
+pwd
+rmdir /empty
+ls /
+rmdir /home
+rmdir /data.bin
+rmdir missing
+rmdir /
+rmdir
+rmdir /home /empty
+rmdir -p /home
+cd missing
+cd /data.bin
+ls missing
+ls -z
+ls /home /empty
+pwd extra
+du -z
+du missing
+du /home /empty
+unknown
+vfs-init extra
+vfs-init
+pwd
+ls -a /
+du -s /
+cd /empty
+rmdir .
+cd /
+rmdir /empty
+ls /
+exit extra
+exit
+unknown_after_exit

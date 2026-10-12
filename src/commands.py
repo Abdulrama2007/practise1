@@ -73,3 +73,23 @@ def initialize_vfs(vfs, args):
     require_no_args(args)
     vfs.reset()
     return "VFS сброшена к состоянию по умолчанию"
+
+
+def remove_directory(vfs, args):
+    """rmdir путь: удалить одну пустую папку только из памяти."""
+    if len(args) != 1:
+        raise ValueError("использование: rmdir путь")
+    path, unused = parse_path(args)
+    node, canonical = vfs.resolve(path)
+    if not node.is_dir:
+        raise ValueError("указанный объект не является папкой")
+    if canonical == "/":
+        raise ValueError("нельзя удалить корень VFS")
+    if canonical == vfs.cwd:
+        raise ValueError("нельзя удалить текущую папку")
+    if node.children:
+        raise ValueError("папка не пуста")
+    parent_path, name = canonical.rsplit("/", 1)
+    parent, unused = vfs.resolve(parent_path or "/")
+    del parent.children[name]
+    return ""

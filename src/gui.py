@@ -25,7 +25,7 @@ class Terminal:
         self.entry.bind("<Return>", self.submit)
         self.entry.focus_set()
         self.write("Вариант 21 | Эмулятор UNIX-оболочки")
-        self.write("Команды: ls [-a], cd, pwd, du [-s], vfs-init, exit")
+        self.write("Команды: ls [-a], cd, pwd, du [-s], rmdir, vfs-init, exit")
         self.update_prompt()
 
     def build_widgets(self):
@@ -66,12 +66,16 @@ class Terminal:
         self.write(self.shell.execute(line))
         if not self.shell.running:
             self.root.destroy()
+        else:
+            self.update_prompt()
 
     def start_script(self, path):
         """Выполнить сценарий после появления окна."""
         run_script(self.shell, path, self.write)
         if not self.shell.running:
             self.root.destroy()
+        else:
+            self.update_prompt()
 
     def run(self, startup=None):
         """Запустить события окна и необязательный стартовый скрипт."""

@@ -1,0 +1,11 @@
+# Демонстрация без намеренных ошибок; окно остаётся открытым.
+pwd
+ls -a /
+cd /home/student/documents
+pwd
+ls
+du
+du -s /
+cd /
+rmdir /empty
+ls /

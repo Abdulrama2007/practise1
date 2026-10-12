@@ -5,7 +5,7 @@ import socket
 
 from src.commands import (
     change_directory, current_directory, disk_usage, initialize_vfs,
-    list_files, require_no_args,
+    list_files, remove_directory, require_no_args,
 )
 from src.vfs import VFS
 
@@ -25,6 +25,7 @@ class Shell:
             "pwd": current_directory,
             "du": disk_usage,
             "vfs-init": initialize_vfs,
+            "rmdir": remove_directory,
         }
 
     @property

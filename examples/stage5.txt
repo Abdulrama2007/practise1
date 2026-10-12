@@ -1,0 +1,18 @@
+# Запускать с deep.xml; все варианты ошибок rmdir.
+ls -a /
+rmdir /empty
+ls /
+rmdir /home/student/empty
+ls /home/student
+rmdir /home
+rmdir /data.bin
+rmdir missing
+rmdir /
+rmdir
+rmdir /home /empty
+rmdir -p /home
+cd /home/student/documents/tasks
+rmdir .
+pwd
+cd /
+du -s /
