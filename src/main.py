@@ -5,6 +5,7 @@ import sys
 from src.config import describe_config, parse_args
 from src.shell import Shell
 from src.startup import execute_lines, run_script
+from src.vfs import VFS
 
 
 def main(argv=None):
@@ -12,7 +13,11 @@ def main(argv=None):
     args = parse_args(argv)
     debug = describe_config(args)
     print(debug)
-    shell = Shell()
+    try:
+        shell = Shell(VFS(args.vfs))
+    except (OSError, ValueError, RecursionError) as error:
+        print(f"Ошибка загрузки VFS: {error}", file=sys.stderr)
+        return 1
     if args.headless:
         if args.startup:
             return bool(run_script(shell, args.startup, print))

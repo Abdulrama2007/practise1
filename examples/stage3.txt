@@ -1,0 +1,7 @@
+# Запускать с копией XML: vfs-init сбрасывает её на диске.
+ls
+vfs-init wrong
+vfs-init
+ls
+cd /
+unknown

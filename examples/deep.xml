@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vfs name="student-vfs">
+  <directory name="home">
+    <directory name="student">
+      <directory name="documents">
+        <directory name="tasks">
+          <file name="plan.txt" encoding="utf-8">Learn Python</file>
+        </directory>
+        <file name="hello.txt" encoding="utf-8">Привет!</file>
+      </directory>
+      <directory name="empty" />
+    </directory>
+  </directory>
+  <directory name="empty" />
+  <file name="data.bin" encoding="base64">AAECAw==</file>
+  <file name=".hidden" encoding="utf-8">hidden</file>
+</vfs>

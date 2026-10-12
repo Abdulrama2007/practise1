@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vfs name="multiple">
+  <file name="a.txt" encoding="utf-8">abc</file>
+  <file name="b.bin" encoding="base64">AAECAw==</file>
+  <directory name="empty" />
+</vfs>
