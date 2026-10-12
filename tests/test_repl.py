@@ -8,10 +8,11 @@ from src.shell import Shell
 class ReplTests(unittest.TestCase):
     """Проверить диалог, разбор строки и ошибки."""
 
-    def test_stub(self):
+    def test_parser(self):
         """Пробелы отделяют команду от аргумента."""
-        answer = Shell().execute("  cd   documents  ")
-        self.assertIn("documents", answer)
+        shell = Shell()
+        self.assertEqual(shell.execute("  cd   home  "), "")
+        self.assertEqual(shell.execute("pwd"), "/home")
 
     def test_unknown(self):
         """Незнакомая команда не завершает сеанс."""

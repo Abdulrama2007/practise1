@@ -1,0 +1,28 @@
+# Основные команды, все режимы; ошибки ожидаются.
+pwd
+ls
+ls -a /
+ls /home/student/documents
+ls /data.bin
+cd /home/student
+pwd
+cd ./documents/tasks
+pwd
+cd ..
+ls
+du
+du -s /
+du /data.bin
+cd
+pwd
+cd missing
+cd /data.bin
+ls -z
+ls missing
+ls /home /empty
+cd /home /empty
+pwd extra
+du -z
+du missing
+du /home /empty
+unknown

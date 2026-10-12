@@ -25,7 +25,8 @@ class Terminal:
         self.entry.bind("<Return>", self.submit)
         self.entry.focus_set()
         self.write("Вариант 21 | Эмулятор UNIX-оболочки")
-        self.write("Команды: ls, cd, exit")
+        self.write("Команды: ls [-a], cd, pwd, du [-s], vfs-init, exit")
+        self.update_prompt()
 
     def build_widgets(self):
         """Добавить журнал, приглашение и поле команды."""
@@ -61,7 +62,7 @@ class Terminal:
         """Выполнить введённую команду и обновить окно."""
         line = self.entry.get()
         self.entry.delete(0, "end")
-        self.write(f"$ {line}")
+        self.write(f"{self.shell.prompt} {line}")
         self.write(self.shell.execute(line))
         if not self.shell.running:
             self.root.destroy()
@@ -77,3 +78,7 @@ class Terminal:
         if startup:
             self.root.after(100, lambda: self.start_script(startup))
         self.root.mainloop()
+
+    def update_prompt(self):
+        """Обновить путь после команды или стартового скрипта."""
+        self.prompt.configure(text=self.shell.prompt)
