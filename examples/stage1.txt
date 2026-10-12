@@ -1,0 +1,6 @@
+# Диалог первого этапа; ошибка ожидается.
+ls
+cd documents
+unknown
+exit extra
+exit

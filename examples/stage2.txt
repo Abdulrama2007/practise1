@@ -1,0 +1,7 @@
+# Последовательное выполнение и продолжение после ошибок.
+ls
+unknown
+ls missing extra
+cd /
+exit
+unknown_after_exit

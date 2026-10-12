@@ -5,6 +5,8 @@ import socket
 import tkinter as tk
 from tkinter.scrolledtext import ScrolledText
 
+from src.startup import run_script
+
 
 class Terminal:
     """Окно с журналом диалога и строкой ввода."""
@@ -64,6 +66,14 @@ class Terminal:
         if not self.shell.running:
             self.root.destroy()
 
-    def run(self):
-        """Запустить цикл обработки событий окна."""
+    def start_script(self, path):
+        """Выполнить сценарий после появления окна."""
+        run_script(self.shell, path, self.write)
+        if not self.shell.running:
+            self.root.destroy()
+
+    def run(self, startup=None):
+        """Запустить события окна и необязательный стартовый скрипт."""
+        if startup:
+            self.root.after(100, lambda: self.start_script(startup))
         self.root.mainloop()
